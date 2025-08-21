@@ -1,0 +1,12 @@
+name: 'SPC OIDC Login'
+description: 'GitHub Actions OIDC login for SPC'
+runs:
+  using: 'bash'
+  main: 'entrypoint.sh'
+inputs:
+  role_arn:
+    description: 'SPC IAM Role ARN'
+    required: true
+  sts_endpoint:
+    description: 'STS endpoint URL'
+    required: true
