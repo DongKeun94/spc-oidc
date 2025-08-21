@@ -8,10 +8,6 @@ runs:
       shell: bash
       run: |
 
-        export AWS_RESPONSE_CHECKSUM_VALIDATION=${AWS_RESPONSE_CHECKSUM_VALIDATION:-when_required}
-        export AWS_REQUEST_CHECKSUM_CALCULATION=${AWS_REQUEST_CHECKSUM_CALCULATION:-when_required}
-
-
         ID_TOKEN=$(curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
           "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.samsungspc.com" | jq -r '.value')
 
@@ -22,7 +18,7 @@ runs:
 
 
         echo "===== OIDC Token Claims ====="
-        echo "$ID_TOKEN" | cut -d "." -f2 | base64 -d | jq .
+        echo "$ID_TOKEN" | cut -d "." -f2 | tr '_-' '/+' | base64 -d | jq .
         echo "============================="
 
 
