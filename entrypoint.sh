@@ -5,7 +5,7 @@ ROLE_ARN="$1"
 STS_ENDPOINT="$2"
 
 
-# OIDC 토큰 요청
+
 ID_TOKEN=$(curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
   "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.samsungspc.com" | jq -r '.value')
 
